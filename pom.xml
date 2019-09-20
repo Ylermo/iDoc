@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.vallegrande</groupId>
-    <artifactId>1.0-SNAPSHOT</artifactId>
-    <version>1.0</version>
+    <artifactId>iDoc</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>iDoc</name>
