@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link rel="icon" href="../../resources/icon/group.png" sizes="32x32"/>
+        <!--Other CSS and JS-->
+        <h:outputStylesheet library="css"  name="materialize.min.css"/>
+        <h:outputStylesheet library="css"  name="style.css"/>
+        <h:outputScript library="js" name="jsfcrud.js" />
+        <!--***-->
+        <!--CSS and JS - Van en esta Posicion para que funcione bien-->
+        <h:outputStylesheet library="css"  name="fontawesome-all.css"/>
+        <h:outputStylesheet library="css"  name="components.css"/>
+        <h:outputStylesheet library="css"  name="ripple.css"/>
+        <h:outputStylesheet library="css"  name="schedule.css"/>
+        <h:outputStylesheet library="css"  name="scrollpanel.css"/>
+        <h:outputStylesheet library="css"  name="animate.css"/>
+        <h:outputStylesheet library="css"  name="layout-dark-green.css"/>
+        <h:outputStylesheet library="css"  name="theme-dark-green.css"/>
+        <h:outputScript library="js" name="core.js" />
+        <h:outputScript library="js" name="inputswitch.js" />
+        <h:outputScript library="js" name="layout.js" />
+        <h:outputScript library="js" name="touchswipe.js" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <!--***-->        
+        <title>Login - iDoc</title>
+        <style type="text/css">
+            .main-content {
+                padding: 0;
+            }
+        </style>
+    </h:head>
+    <h:body class="login-body">
+        <f:event type="preRenderView" listener="#{loginC.volverHome()}"/>
+        <div class="card login-panel ui-fluid">
+            <div class="ui-g">
+                <h:form id="frmIngresar">      
+                    <p:growl life="1000"/>
+
+                    <div class="ui-g-12">
+                        <h:panelGroup styleClass="md-inputfield">
+                            <p:inputText requiredMessage="Ingrese usuario"
+                                         value="#{loginC.loginSesion.USRLOG}" required="true"/>
+                            <p:outputLabel value="Usuario" for="@previous"/>
+                            <p:focus/>
+                        </h:panelGroup>
+                    </div>
+                    <div class="ui-g-12">
+                        <h:panelGroup styleClass="md-inputfield">                            
+                            <p:password requiredMessage="Ingrese contraseña"
+                                        value="#{loginC.loginSesion.PSSWLOG}" required="true"/>
+                            <p:outputLabel value="Contraseña" for="@previous"/>
+                        </h:panelGroup>
+                    </div>
+
+                    <div class="ui-g-12">
+                        <p:commandButton actionListener="#{loginC.iniciarSesion()}"
+                                         id="btnIngresar" icon="ui-icon-locked"
+                                         styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only amber-btn"
+                                         value="Acceder" update="frmIngresar"/>
+                    </div>
+                    <div class="ui-g-12">
+                        <div class="ui-g-4">
+                            <p:commandButton action="Transparencia" immediate="true" value="VUT" title="Ventanilla Única de Trámite"
+                                             ajax="true"
+                                             styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only secondary"/>
+                        </div>
+                        <div class="ui-g-4">
+                            <p:commandButton action="Contacto" immediate="true" title="Contacto" ajax="true" icon=" ui-icon-mail"
+                                             styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only blue-grey-btn"
+                                             />
+                        </div>
+                        <div class="ui-g-4">
+                            <p:commandButton action="Nosotros" immediate="true" title="Acerca" icon="ui-icon-info" ajax="true"
+                                             styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only red-btn"/>
+                        </div>
+                    </div>
+                    <div class="login-footer">Municipalidad Distrital de Nuevo Imperial</div>
+
+                    <p:blockUI block="frmIngresar" trigger="btnIngresar">
+                        <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-blue">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div><div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div><div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </p:blockUI>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>
+

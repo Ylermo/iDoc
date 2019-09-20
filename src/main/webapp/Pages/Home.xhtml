@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="../Templates/Default.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:param name="tituloPagina" value="Home"/>
+
+    <ui:define name="contenidoPagina">
+        <f:event type="preRenderView" listener="#{loginC.seguridadSesion()}"/>
+
+        <p:fragment rendered="#{loginC.loginSesion.TIPLOG.charAt(1) == 'R'? true : false}">
+            <div class="ui-g dashboard">
+                <ui:repeat value="#{dashboardC.listaCantidadesActa}" var="cantidadActas">
+                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                        <h:form>
+                            <p:outputPanel class="ui-g card colorbox colorbox-#{cantidadActas.acta.TIPACTA} panel aumentar">
+
+                                <div class="ui-g-4">
+
+                                    <i class="material-icons">
+                                        #{cantidadActas.acta.TIPACTA eq '1' ?
+                                          'child_friendly':
+                                          cantidadActas.acta.TIPACTA eq '2' ? 
+                                          'favorite_border': 'airline_seat_flat'}
+                                    </i>
+                                </div>
+                                <div class="ui-g-8">
+                                    <span class="colorbox-name">#{cantidadActas.acta.TIPACTA eq '1' ?
+                                                                  'Partidas de Nacimiento':
+                                                                  cantidadActas.acta.TIPACTA eq '2' ? 
+                                                                  'Actas de Matrimonio': 'Actas de Defunción'}
+                                    </span>
+                                    <span class="colorbox-count">#{cantidadActas.cantidad}</span>
+                                </div>
+                            </p:outputPanel>
+                        </h:form>
+                    </div>
+                </ui:repeat>
+            </div>
+        </p:fragment>
+
+
+
+      
+        <p:fragment rendered="#{loginC.loginSesion.TIPLOG.charAt(1) == 'T'? true : false}">
+            <div class="ui-g dashboard">
+                <ui:repeat value="#{dashboardC.listaCantidadesDocumento}" var="cantidadesDocumento">
+                    <div class="ui-g-12 ui-md-6 ui-lg-3">
+                        <h:form>
+                            <p:outputPanel class="ui-g card colorbox ">
+
+
+                                <div class="ui-g-12 ui-md-12 ui-lg-12">
+                                    <div class="ui-g card colorbox colorbox-1">
+                                        <div class="ui-g-5">
+                                            <i class="material-icons">description</i>
+                                        </div>
+
+                                        <div class="ui-g-7">
+                                            
+                                        <span class="colorbox-name">Documentos registrados
+                                        </span>
+                                            <span class="colorbox-name">#{cantidadesDocumento.cantidadD}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                            </p:outputPanel>
+                        </h:form>
+                    </div>
+                </ui:repeat>
+            </div>
+        </p:fragment>
+        
+        
+        
+             
+
+
+
+
+
+        <div class="ui-g-12 ui-md-12">
+            <div class="card">
+                <!--                Aquí los charts xd-->
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
+
+
+
+
